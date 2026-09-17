@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#05060b">
+
+    <title>ZONA | ENTRY</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background"></div>
+    <div class="overlay"></div>
+
+    <main class="page">
+
+        <section class="hero">
+
+            <div class="logo">
+                <span class="logo-main">ZONA</span>
+                <span class="logo-sub">HOUSE PARTY</span>
+            </div>
+
+            <p class="event-date">
+                10.24 — 10.25
+            </p>
+
+            <h1>
+                GOOD MUSIC.<br>
+                GOOD PEOPLE.<br>
+                <span>GREAT NIGHT.</span>
+            </h1>
+
+            <p class="hero-description">
+                ZONA PRIVATE HOUSE PARTY
+            </p>
+
+        </section>
+
+
+        <section class="form-card">
+
+            <div class="step">
+                <span class="step-number">01</span>
+
+                <div>
+                    <p class="step-small">ENTRY</p>
+                    <h2>参加申込</h2>
+                </div>
+            </div>
+
+            <p class="form-description">
+                下記の情報を入力してください。
+            </p>
+
+            <form id="eventForm">
+
+                <div class="field">
+
+                    <label for="name">
+                        NAME
+                        <span>お名前</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="山田 太郎"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="phone">
+                        PHONE
+                        <span>電話番号</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        placeholder="09012345678"
+                        autocomplete="tel"
+                        inputmode="tel"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="instagram">
+                        INSTAGRAM
+                        <span>Instagram ID</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="instagram"
+                        name="instagram"
+                        placeholder="@example"
+                        autocapitalize="none"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        GENDER
+                        <span>性別</span>
+                    </label>
+
+                    <div class="gender-box">
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="男性"
+                                required
+                            >
+
+                            <span>MEN</span>
+
+                        </label>
+
+
+                        <label class="gender-option">
+
+                            <input
+                                type="radio"
+                                name="gender"
+                                value="女性"
+                            >
+
+                            <span>WOMEN</span>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <button type="submit" class="main-button">
+
+                    <span>NEXT</span>
+
+                    <span class="arrow">→</span>
+
+                </button>
+
+            </form>
+
+            <p class="privacy">
+                入力いただいた情報はイベント運営・参加確認の目的で使用します。
+            </p>
+
+        </section>
+
+
+        <footer>
+
+            <span>ZONA</span>
+
+            <p>
+                PRIVATE HOUSE PARTY
+            </p>
+
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

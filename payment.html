@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#05060b">
+
+    <title>ZONA | PAYMENT</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="background payment-background"></div>
+<div class="overlay"></div>
+
+
+<main class="page">
+
+
+    <section class="mini-header">
+
+        <div class="logo">
+
+            <span class="logo-main">
+                ZONA
+            </span>
+
+            <span class="logo-sub">
+                HOUSE PARTY
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <section class="form-card payment-card">
+
+
+        <div class="step">
+
+            <span class="step-number">
+                02
+            </span>
+
+            <div>
+
+                <p class="step-small">
+                    PAYMENT
+                </p>
+
+                <h1>
+                    お支払い
+                </h1>
+
+            </div>
+
+        </div>
+
+
+
+        <p class="form-description">
+
+            下記の申込内容をご確認のうえ、
+            指定口座へお振込みください。
+
+        </p>
+
+
+
+        <!-- 申込内容 -->
+
+        <div class="info-title">
+            ENTRY INFORMATION
+        </div>
+
+
+        <div class="confirm-box">
+
+
+            <div class="confirm-row">
+
+                <span>NAME</span>
+
+                <strong id="confirmName"></strong>
+
+            </div>
+
+
+            <div class="confirm-row">
+
+                <span>INSTAGRAM</span>
+
+                <strong id="confirmInstagram"></strong>
+
+            </div>
+
+
+            <div class="confirm-row">
+
+                <span>GENDER</span>
+
+                <strong id="confirmGender"></strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- 振込先 -->
+
+
+        <div class="info-title bank-title">
+
+            BANK TRANSFER
+
+        </div>
+
+
+        <div class="bank-box">
+
+
+            <div class="bank-row">
+
+                <span>金融機関</span>
+
+                <strong>
+                    ゆうちょ銀行
+                </strong>
+
+            </div>
+
+
+            <div class="bank-row">
+
+                <span>店名</span>
+
+                <strong>
+                    二〇八（ニゼロハチ）店
+                </strong>
+
+            </div>
+
+
+            <div class="bank-row">
+
+                <span>店番</span>
+
+                <strong>
+                    208
+                </strong>
+
+            </div>
+
+
+            <div class="bank-row">
+
+                <span>預金種目</span>
+
+                <strong>
+                    普通
+                </strong>
+
+            </div>
+
+
+            <div class="bank-row">
+
+                <span>口座番号</span>
+
+                <strong class="account-number">
+                    5761181
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="notice">
+
+            <span class="notice-icon">
+                !
+            </span>
+
+            <p>
+
+                振込手数料は参加者様のご負担となります。<br>
+
+                <strong>
+                    入金確認後に参加確定となります。
+                </strong>
+
+            </p>
+
+        </div>
+
+
+
+        <div class="field">
+
+            <label for="transferName">
+
+                TRANSFER NAME
+
+                <span>
+                    振込名義
+                </span>
+
+            </label>
+
+
+            <input
+                type="text"
+                id="transferName"
+                placeholder="例：ヤマダ タロウ"
+                required
+            >
+
+        </div>
+
+
+        <div class="field screenshot-field">
+
+    <label for="paymentScreenshot">
+        PAYMENT SCREENSHOT
+        <span>支払い完了スクショ</span>
+    </label>
+
+    <label class="upload-box" for="paymentScreenshot">
+        <span class="upload-icon">＋</span>
+        <strong>スクショを選択</strong>
+        <small>JPG / PNG / WEBP・最大5MB</small>
+    </label>
+
+    <input
+        type="file"
+        id="paymentScreenshot"
+        accept="image/jpeg,image/png,image/webp"
+        hidden
+        required
+    >
+
+    <div id="screenshotPreviewBox" class="screenshot-preview-box">
+        <img id="screenshotPreview" alt="支払いスクショ">
+        <button type="button" id="removeScreenshot" class="remove-image">
+            画像を変更
+        </button>
+    </div>
+
+</div>
+
+
+        <button
+            id="submitPayment"
+            class="main-button"
+        >
+
+            <span>
+                COMPLETE ENTRY
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </button>
+
+
+
+        <button
+            class="back-button"
+            onclick="history.back()"
+        >
+
+            ← 入力画面に戻る
+
+        </button>
+
+
+    </section>
+
+
+
+    <footer>
+
+        <span>
+            ZONA
+        </span>
+
+        <p>
+            PRIVATE HOUSE PARTY
+        </p>
+
+    </footer>
+
+
+</main>
+
+
+
+<script>
+
+const WEB_APP_URL =
+"https://script.google.com/macros/s/AKfycbzYvH5nu5e5zWrgOs3P0jpB2DL6wbGvhLMjCrqnMLJx7geKvmXyiW3id1mjv8YOHukg/exec";
+
+
+/* =========================
+   申込情報
+========================= */
+
+const name = sessionStorage.getItem("name");
+const phone = sessionStorage.getItem("phone");
+const instagram = sessionStorage.getItem("instagram");
+const gender = sessionStorage.getItem("gender");
+
+
+if (!name || !phone || !instagram || !gender) {
+    window.location.href = "index.html";
+}
+
+
+document.getElementById("confirmName").textContent = name;
+document.getElementById("confirmInstagram").textContent = instagram;
+document.getElementById("confirmGender").textContent = gender;
+
+
+/* =========================
+   スクリーンショット
+========================= */
+
+const screenshotInput =
+    document.getElementById("paymentScreenshot");
+
+const screenshotPreview =
+    document.getElementById("screenshotPreview");
+
+const screenshotPreviewBox =
+    document.getElementById("screenshotPreviewBox");
+
+const removeScreenshot =
+    document.getElementById("removeScreenshot");
+
+
+screenshotInput.addEventListener("change", function () {
+
+    const file = this.files[0];
+
+    if (!file) {
+        return;
+    }
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+    ];
+
+
+    if (!allowedTypes.includes(file.type)) {
+
+        alert("JPG・PNG・WEBPの画像を選択してください。");
+
+        this.value = "";
+
+        return;
+    }
+
+
+    if (file.size > 5 * 1024 * 1024) {
+
+        alert("画像サイズは5MB以下にしてください。");
+
+        this.value = "";
+
+        return;
+    }
+
+
+    screenshotPreview.src =
+        URL.createObjectURL(file);
+
+    screenshotPreviewBox.classList.add("show");
+
+});
+
+
+removeScreenshot.addEventListener("click", function () {
+
+    screenshotInput.value = "";
+
+    screenshotPreview.src = "";
+
+    screenshotPreviewBox.classList.remove("show");
+
+    screenshotInput.click();
+
+});
+
+
+/* =========================
+   Base64変換
+========================= */
+
+function fileToBase64(file) {
+
+    return new Promise((resolve, reject) => {
+
+        const reader = new FileReader();
+
+        reader.onload = function () {
+            resolve(reader.result);
+        };
+
+        reader.onerror = function () {
+            reject(reader.error);
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+}
+
+
+/* =========================
+   送信
+========================= */
+
+document
+.getElementById("submitPayment")
+.addEventListener("click", async function () {
+
+    const transferName =
+        document
+        .getElementById("transferName")
+        .value
+        .trim();
+
+
+    if (!transferName) {
+
+        alert("振込名義を入力してください。");
+
+        return;
+    }
+
+
+    const screenshotFile =
+        screenshotInput.files[0];
+
+
+    if (!screenshotFile) {
+
+        alert("支払い完了スクショを選択してください。");
+
+        return;
+    }
+
+
+    const button =
+        document.getElementById("submitPayment");
+
+
+    button.disabled = true;
+
+    button.innerHTML =
+        "<span>送信中...</span>";
+
+
+    try {
+
+        /* 画像をBase64へ変換 */
+
+        const paymentScreenshot =
+            await fileToBase64(screenshotFile);
+
+
+        /* Apps Scriptへ送るデータ */
+
+        const data = {
+
+            name: name,
+
+            phone: phone,
+
+            instagram: instagram,
+
+            gender: gender,
+
+            transferName: transferName,
+
+            paymentScreenshot: paymentScreenshot
+
+        };
+
+
+        await fetch(WEB_APP_URL, {
+
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+
+            },
+
+            body: JSON.stringify(data)
+
+        });
+
+
+        /* 一時保存データ削除 */
+
+        sessionStorage.clear();
+
+
+        /* 完了画面 */
+
+        document.querySelector(
+            ".payment-card"
+        ).innerHTML = `
+
+            <div class="success">
+
+                <div class="success-icon">
+                    ✓
+                </div>
+
+                <p class="step-small">
+                    ENTRY COMPLETE
+                </p>
+
+                <h1>
+                    申込完了
+                </h1>
+
+                <p>
+                    お申込みありがとうございます。
+                    <br><br>
+                    支払い情報を受け付けました。
+                    <br>
+                    入金確認後、参加確定となります。
+                </p>
+
+                <a
+                    href="index.html"
+                    class="main-button success-button"
+                >
+                    TOPへ戻る
+                </a>
+
+            </div>
+
+        `;
+
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+
+    } catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "送信に失敗しました。\n" +
+            "通信環境を確認して、もう一度お試しください。"
+        );
+
+
+        button.disabled = false;
+
+        button.innerHTML = `
+            <span>COMPLETE ENTRY</span>
+            <span class="arrow">→</span>
+        `;
+
+    }
+
+});
+
+</script>
+
+
+</body>
+
+</html>
