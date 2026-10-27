@@ -1231,3 +1231,143 @@ footer p {
     }
 
 }
+    /* =========================
+   ZONA CHRISTMAS
+========================= */
+
+.background {
+    background:
+        radial-gradient(
+            circle at 75% 15%,
+            rgba(255, 35, 35, .18),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 15% 55%,
+            rgba(255, 190, 60, .10),
+            transparent 38%
+        ),
+        linear-gradient(
+            145deg,
+            #030303,
+            #120607 55%,
+            #020202
+        );
+}
+
+/* ZONAロゴ */
+.logo-main {
+    background:
+        linear-gradient(
+            180deg,
+            #ffffff,
+            #ffe9a6 50%,
+            #d5a83d
+        );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255, 202, 86, .45)
+        );
+}
+
+.logo-sub,
+.event-date,
+.step-small,
+.field > label {
+    color: #ffd76a;
+}
+
+.hero h1 span {
+    color: #ffffff;
+
+    text-shadow:
+        0 0 25px rgba(255,255,255,.35),
+        0 0 45px rgba(210,30,30,.25);
+}
+
+/* カードも少しクリスマス仕様 */
+.form-card {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(30, 10, 12, .94),
+            rgba(7, 7, 9, .97)
+        );
+
+    border:
+        1px solid
+        rgba(255, 215, 110, .15);
+}
+
+/* ボタン */
+.main-button {
+    background:
+        linear-gradient(
+            100deg,
+            #8d0c16,
+            #d31d2e
+        );
+
+    box-shadow:
+        0 10px 35px
+        rgba(180, 0, 20, .28);
+}
+/* =========================
+   FALLING SNOW
+========================= */
+
+/* ===== ZONA SNOW ===== */
+
+
+
+
+    html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#snowCanvas {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    display: block;
+    pointer-events: none;
+    z-index: 99999;
+}
+
+.page {
+    padding-top: 0 !important;
+}
+
+.hero {
+    padding-top: 0 !important;
+}
+
+.screenshot-preview-box {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.screenshot-preview-box img {
+    display: block;
+
+    width: 100%;
+    max-width: 280px;
+    max-height: 380px;
+
+    margin: 0 auto 12px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,.12);
+}

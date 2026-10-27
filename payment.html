@@ -23,7 +23,7 @@
 
 
 <body>
-
+<canvas id="snowCanvas"></canvas>
 <div class="background payment-background"></div>
 <div class="overlay"></div>
 
@@ -308,7 +308,7 @@
         </span>
 
         <p>
-            PRIVATE HOUSE PARTY
+            PRIVATE HOUSE PARTY<br>
         送信には時間かかる可能性があります
         </p>
 
@@ -607,6 +607,93 @@ document
 
     }
 
+});
+
+/* =========================
+   SNOW
+========================= */
+
+const canvas = document.getElementById("snowCanvas");
+const ctx = canvas.getContext("2d");
+
+let snowWidth;
+let snowHeight;
+let snowflakes = [];
+
+function resizeSnowCanvas() {
+    snowWidth = window.innerWidth;
+    snowHeight = window.innerHeight;
+
+    canvas.width = snowWidth;
+    canvas.height = snowHeight;
+}
+
+function createSnowflake() {
+    return {
+        x: Math.random() * snowWidth,
+        y: Math.random() * snowHeight,
+        radius: Math.random() * 3 + 1,
+        speed: Math.random() * 1.5 + 0.5,
+        drift: Math.random() * 0.6 - 0.3,
+        opacity: Math.random() * 0.6 + 0.4
+    };
+}
+
+function initSnow() {
+    snowflakes = [];
+
+    for (let i = 0; i < 120; i++) {
+        snowflakes.push(createSnowflake());
+    }
+}
+
+function drawSnow() {
+    ctx.clearRect(0, 0, snowWidth, snowHeight);
+
+    snowflakes.forEach(flake => {
+
+        ctx.beginPath();
+
+        ctx.arc(
+            flake.x,
+            flake.y,
+            flake.radius,
+            0,
+            Math.PI * 2
+        );
+
+        ctx.fillStyle =
+            `rgba(255,255,255,${flake.opacity})`;
+
+        ctx.fill();
+
+        flake.y += flake.speed;
+        flake.x += flake.drift;
+
+        if (flake.y > snowHeight) {
+            flake.y = -10;
+            flake.x = Math.random() * snowWidth;
+        }
+
+        if (flake.x > snowWidth) {
+            flake.x = 0;
+        }
+
+        if (flake.x < 0) {
+            flake.x = snowWidth;
+        }
+    });
+
+    requestAnimationFrame(drawSnow);
+}
+
+resizeSnowCanvas();
+initSnow();
+drawSnow();
+
+window.addEventListener("resize", () => {
+    resizeSnowCanvas();
+    initSnow();
 });
 
 </script>
